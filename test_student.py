@@ -1,15 +1,21 @@
-from datetime import date, timedelta
+import unittest
+from student import Student
 
-class Student:
-    """A student class as base for unit testing"""
+class TestStudent(unittest.TestCase):
+    def test_full_name(self):
+        student = Student("John", "Doe")
+        self.assertEqual(student.full_name, "John Doe")
 
-    def __init__(self, first_name, last_name):
-        self._first_name == first_name  # the underscore shows other developers that it's read-only
-        self._last_name == last_name
-        self._start_date == date.today()
-        self.end_date == date.today() + timedelta(days=365)
-        self.naughty_list = False
+    
+    def test_alert_santa(self):
+        student = Student("John", "Doe")
+        student.alert_santa()
+        self.assertTrue(student.naughty_list)
 
-        @property
-        def full_name(self):
-            return f"{self._first_name} {self._last_name}"
+
+    def test_email(self):
+        student = Student("John", "Doe")
+        self.assertEqual(student.email, f"john.doe@email.com")
+
+if __name__ == "__main__":
+    unittest.main()
